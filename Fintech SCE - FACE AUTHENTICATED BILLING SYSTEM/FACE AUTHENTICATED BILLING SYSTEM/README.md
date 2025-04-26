@@ -1,210 +1,122 @@
 # Face Authenticated Billing System
 
-## Overview
+## Project Overview
 
-This project aims to provide a comprehensive billing system with advanced authentication features. Authentication is done using facial recognition technology, allowing users to log in to the dashboard as either an admin or an operator. Once logged in, users can perform their respective tasks, such as managing invoices, processing payments, and accessing other billing-related features.
+The Face Authenticated Billing System (FABS) is an advanced e-commerce billing platform that combines facial recognition technology for secure user authentication and efficient invoice and payment management. Designed to enhance security and streamline workflows, FABS allows businesses to handle billing, invoicing, and payments with ease.
 
+### Key Features:
+- **Facial Recognition Authentication**: Ensures that only authorized users (admin or operators) can access the system.
+- **Invoice Management**: Generate, send, track, and manage invoices in real-time.
+- **Payment Processing**: Integrates with Razorpay to allow secure online payments.
+- **Real-time Notifications**: Receive immediate alerts for status changes, payment confirmations, and invoice updates.
+- **QR Code Generation**: Generate QR codes for quick invoice access.
+- **User Profiles**: Store customer profiles securely using facial biometrics for faster future transactions.
+
+This system is highly scalable and can be used across various sectors, including retail, e-commerce, healthcare, and more.
 
 ## Technologies Used
 
-### Billing System Server
+- **Frontend**: React.js, Ant Design, Bootstrap, Axios, React Webcam, QRCode.react
+- **Backend**: Node.js, Express.js, Mongoose, Bcrypt.js, CORS, Dotenv, Nodemailer, Razorpay
+- **Database**: MongoDB
+- **Authentication**: Face ID API, Firebase
+- **Real-Time Updates**: WebSocket for real-time interactions
+- **Payment Gateway**: Razorpay API
 
-- Express.js
-- MongoDB (with Mongoose)
-- Bcrypt.js
-- CORS
-- Dotenv
-- Jsonwebtoken
-- Nodemailer
-- Nodemon
-- Razorpay
+## Prerequisites
 
-### Billing System Frontend
+Before setting up the project, ensure that you have the following installed:
 
-- React.js
-- Ant Design (antd)
-- Axios
-- Bootstrap
-- Firebase
-- HTML5-QRCode
-- QRCode.react
-- React Router DOM
-- React Webcam
-- Styled Components
+- **Node.js** and **npm** (for backend and frontend dependencies)
+- **MongoDB** (for database)
+- **Razorpay** account (for payment integration)
+- **Firebase** project (for user authentication)
 
-## Installation
+## Installation and Setup
 
-### Billing System Server
-
+### 1. Clone the Repository
+### 2. Backend Setup
+Install Dependencies:
+```bash
+npm install express mongoose bcryptjs cors dotenv jsonwebtoken nodemailer razorpay
 ```
-npm install express mongoose bcryptjs cors dotenv jsonwebtoken nodemailer nodemon razorpay
+Set up Environment Variables:
+Create a .env file in the root of the backend project and include the following variables:
+```bash
+MONGO_URL=your_mongo_connection_string
+MONGO_DATABASE=your_database_name
+JWT_SECRET=your_jwt_secret_key
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_SECRET_KEY=your_razorpay_secret_key
+EMAIL=your_email_username
+EMAIL_PASSWORD=your_email_password
+PUBLIC_DOMAIN=http://localhost:3000
 ```
-
-### Billing System Frontend
-```
+### 3. Frontend Setup
+Install Dependencies:
+Navigate to the frontend folder and install the required dependencies:
+```bash
 cd billing-system
 npm install @emotion/react @emotion/styled @faceio/fiojs @mui/icons-material @mui/material @testing-library/jest-dom @testing-library/react @testing-library/user-event antd axios bootstrap firebase html5-qrcode qrcode.react react-router-dom react-spinners react-webcam styled-components web-vitals
 ```
-
-## Usage
-
-### To run the backend server:
+Set up Environment Variables:
+Create a .env file in the frontend project and include the following variables:
+```bash
+REACT_APP_BASE_URL=http://localhost:5000
+REACT_APP_PUBLIC_ID=your_face_id_public_id
+REACT_APP_FACE_ID_API=your_face_id_api_key
+REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+REACT_APP_FIREBASE_PROJECT_ID=your_firebase_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+REACT_APP_FIREBASE_APP_ID=your_firebase_app_id
+REACT_APP_RAZORPAY_KEY_ID=your_razorpay_key_id
 ```
+## Running the Project
+1. Backend:
+Start the backend server with:
+```bash
 node index.js
 ```
-`OR`
-```
+Alternatively, use nodemon for auto-restarting the server during development:
+```bash
 nodemon index.js
 ```
-### To start the frontend development server:
-```
+2. Frontend:
+Start the frontend server with:
+```bash
+cd billing-system
 npm start
 ```
+This will run the frontend application, typically at http://localhost:3000.
 
-## Environment Variables
+Usage
+Once the backend and frontend servers are running, navigate to http://localhost:3000 in your browser. The system will prompt users to log in via facial recognition.
 
-The following environment variables need to be set in a `.env` file at the root of the backend server directory:
+## Features:
+Admin Dashboard: Provides access to user management, system settings, and analytics.
 
-- `MONGO_URL`: MongoDB connection string.
-- `MONGO_DATABASE`: MongoDB database name
-- `JWT_SECRET`: Secret key for JSON Web Token authentication.
-- `RAZORPAY_KEY_ID`: Razorpay API Key ID.
-- `RAZORPAY_SECRET_KEY`: Razorpay API Key Secret.
-- `EMAIL`: Username for sending emails (if using Nodemailer).
-- `EMAIL_PASSWORD`: Password for sending emails (if using Nodemailer).
-- `PUBLIC_DOMAIN`: Public hosted domain of the site (in development use localhost:3000 || port)
+Operator Dashboard: Facilitates the creation, management, and payment processing of invoices.
 
-Ensure to set these variables with appropriate values before running the server.
+Notifications: Instant email alerts and real-time updates of payment and invoice status.
 
-For the frontend application, the following environment variables need to be set:
+QR Code Access: Scan QR codes to quickly view or pay invoices.
 
-- `REACT_APP_BASE_URL`: Base URL of the backend server.
-- `REACT_APP_PUBLIC_ID`: Public ID for Face ID API.
-- `REACT_APP_FACE_ID_API`: API key for Face ID API.
-- `REACT_APP_FIREBASE_API_KEY`: Firebase API key.
-- `REACT_APP_FIREBASE_AUTH_DOMAIN`: Firebase authentication domain.
-- `REACT_APP_FIREBASE_PROJECT_ID`: Firebase project ID.
-- `REACT_APP_FIREBASE_STORAGE_BUCKET`: Firebase storage bucket.
-- `REACT_APP_FIREBASE_MESSAGING_SENDER_ID`: Firebase messaging sender ID.
-- `REACT_APP_FIREBASE_APP_ID`: Firebase application ID.
-- `REACT_APP_RAZORPAY_KEY_ID`: Razorpay API Key ID.
+## Future Work
+Planned Enhancements:
+Multi-biometric Authentication: Incorporating fingerprint and iris scanning alongside facial recognition for added security and user preference.
 
-Ensure to set these variables with appropriate values before starting the frontend development server.
+Improved Facial Recognition: Utilizing advanced machine learning models for more accurate facial recognition, especially under various lighting conditions.
 
+Expanded Reporting & Analytics: Provide customizable dashboards for deeper insights into user behavior and payment trends.
 
-## Features
+Scalability for Enterprises: Improve the system’s scalability for handling large-scale enterprise applications with millions of users and transactions.
 
-### 1. Facial Recognition Authentication
-   - Users can log in using facial recognition technology.
-   - Secure authentication process ensures access control to the dashboard.
-   - Admin and operator roles are distinguished based on facial authentication.
+Privacy and Compliance: Ensure that biometric data is stored and processed in compliance with global standards (e.g., GDPR, HIPAA).
 
-### 2. Dashboard Access
-   - Upon successful authentication, users are granted access to the dashboard.
-   - Admins and operators have access to specific features and functionalities tailored to their roles.
+## Conclusion
+The Face Authenticated Billing System offers an advanced, secure, and efficient solution for billing and payment processing, leveraging facial recognition for authentication and real-time updates for seamless operations. This system is ideal for businesses looking to improve security, streamline billing workflows, and enhance the overall customer experience.
 
-### 3. Invoice Management
-   - Users can manage invoices efficiently through the dashboard.
-   - Create, view, update, and delete invoices as needed.
-
-### 4. Payment Processing
-   - Process payments seamlessly within the billing system.
-   - Integration with Razorpay API for secure payment transactions.
-
-### 5. Email Notifications
-   - Receive email notifications for important updates, such as invoice status changes or payment confirmations.
-   - Nodemailer integration enables automated email notifications.
-
-### 6. Real-time Updates
-   - Stay informed with real-time updates on invoice statuses and payment processing.
-   - WebSocket integration for instant updates without page refresh.
-
-### 7. Responsive Design
-   - Enjoy a seamless user experience across devices with a responsive design.
-   - Mobile-friendly interface ensures accessibility from anywhere.
-
-### 8. QR Code Generation
-   - Generate QR codes for invoices or payment requests.
-   - HTML5-QRCode library integration for easy QR code generation.
-
-### 9. Face ID API Integration
-   - Integration with Face ID API for robust facial recognition capabilities.
-   - Secure and reliable authentication process using facial biometrics.
-
-### 10. Firebase Integration
-   - Utilize Firebase services for enhanced authentication and data storage capabilities.
-   - Firebase integration ensures scalability, reliability, and security.
-
-### 11. Stylish UI Components
-   - Enhance user experience with stylish UI components from Ant Design (antd) and Material-UI.
-   - Bootstrap integration for additional styling and layout options.
-
-### 12. Continuous Deployment
-   - Implement continuous deployment practices for seamless updates and deployments.
-   - Automated deployment pipelines ensure efficiency and reliability.
-
-### 13. Customizable Settings
-   - Customize settings and configurations to adapt to specific business requirements.
-   - Environment variable support for easy configuration management.
-
-### 14. Scalable Architecture
-   - Built on scalable architecture to accommodate growing business needs.
-   - Express.js backend and React.js frontend ensure scalability and flexibility.
-
-### 15. Developer-Friendly
-   - Developer-friendly codebase with well-documented APIs and modular components.
-   - Easy to understand and extend for future enhancements and customizations.
-
-
-
-# Project Process: From Inception to Completion
-
-## Project Inception
-The idea for the Facial Authenticated Billing System project stemmed from a desire to integrate cutting-edge authentication technology into a billing system. The initial brainstorming sessions involved exploring various authentication methods, ultimately leading to the decision to implement facial recognition.
-
-## Getting Started
-The project began with thorough research into facial recognition technology and its integration with web applications. This involved studying libraries and APIs available for facial recognition, as well as understanding the security implications and user experience considerations.
-
-## Development Phase
-During the development phase, the team divided tasks between backend and frontend development. Setting up the Express.js server and MongoDB database was relatively straightforward, thanks to prior experience with these technologies. However, integrating facial recognition into the authentication process posed a significant challenge.
-
-## Struggles and Challenges
-One of the main struggles encountered was finding a reliable facial recognition API that met the project requirements. Additionally, fine-tuning the facial recognition algorithm to achieve high accuracy and security without compromising user experience proved to be a complex task. Debugging issues related to API integrations and ensuring compatibility across different devices added to the development time.
-
-## Overcoming Challenges
-To overcome the challenges, the team collaborated closely, conducting regular code reviews and brainstorming sessions. Consulting documentation and seeking help from online communities, such as developer forums and Stack Overflow, also proved invaluable. Through perseverance and experimentation, the team was able to overcome most obstacles and make steady progress.
-
-## Conclusion and Reflections
-Despite the challenges faced during the development process, completing the Facial Authenticated Billing System project was a rewarding experience. The project not only provided valuable insights into the practical implementation of facial recognition technology but also highlighted the importance of teamwork, adaptability, and perseverance in overcoming obstacles. Moving forward, the team plans to continue refining the system, addressing any remaining issues, and exploring opportunities for further innovation.
-
-## Lessons Learned
-- Thorough research and planning are essential before embarking on a project involving new technologies or concepts.
-- Collaboration and communication are key to overcoming challenges and making progress, especially in complex development tasks.
-- Flexibility and adaptability are crucial when faced with unexpected hurdles or changes in project requirements.
-
-This narrative provides a holistic view of the project process, from inception to completion, highlighting the experiences, struggles, and lessons learned along the way. It offers insights into the development journey and the team's approach to overcoming challenges, ultimately leading to a successful project outcome.
-
-# Previews
-### Demo
-- Demo video
-[![Video Demo](./images/youtube.png)](https://www.youtube.com/watch?v=GIiLVh6gfsE)
-### Images
-- login
-![login](./images/login.png)
-- operator
-![operator](./images/operator.png)
-![operator](./images/payment.png)
-- payment
-![payment](./images/card.png)
-![payment](./images/fill.png)
-![payment](./images/otp.png)
-- bill
-![invoice](./images/invoice.png)
-- admin dashboard
-![admin](./images/admin.png)
-![admin](./images/admin2.png)
-![admin](./images/admin3.png)
-
-### Live link
-
-[![live link](./images/icon.png)](https://automate-billing-system.vercel.app)
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
